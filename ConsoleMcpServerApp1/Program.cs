@@ -9,22 +9,22 @@ Console.WriteLine("Hello MCP World!");
 var builder = Host.CreateEmptyApplicationBuilder(settings: null);
 
 builder.Services
-       .AddMcpServer()                //MCPサーバーを追加
-       .WithStdioServerTransport()    //標準入出力をトランスポートとして設定
-       .WithToolsFromAssembly();      //アセンブリ内のMCPツールを登録
+       .AddMcpServer()             //MCPサーバーを追加
+       .WithStdioServerTransport() //標準入出力をトランスポートとして設定
+       .WithToolsFromAssembly();   //アセンブリ内のMCPツールを登録
 
 await builder.Build().RunAsync();
 
 [McpServerToolType]
 public static class TimeTools
 {
-    [McpServerTool, Description("Gets the current time")]
+    [McpServerTool, Description("現在の時刻を取得")]
     public static string GetCurrentTime()
     {
         return DateTimeOffset.Now.ToString();
     }
 
-    [McpServerTool, Description("Gets time in specific timezone")]
+    [McpServerTool, Description("指定されたタイムゾーンの現在の時刻を取得")]
     public static string GetTimeInTimezone(string timezone)
     {
         try
