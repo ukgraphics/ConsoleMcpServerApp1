@@ -9,9 +9,9 @@ Console.WriteLine("Hello MCP World!");
 var builder = Host.CreateEmptyApplicationBuilder(settings: null);
 
 builder.Services
-       .AddMcpServer()
-       .WithStdioServerTransport()
-       .WithToolsFromAssembly();
+       .AddMcpServer()                //MCPサーバーを追加
+       .WithStdioServerTransport()    //標準入出力をトランスポートとして設定
+       .WithToolsFromAssembly();      //アセンブリ内のMCPツールを登録
 
 await builder.Build().RunAsync();
 
@@ -34,7 +34,7 @@ public static class TimeTools
         }
         catch
         {
-            return "Invalid timezone specified";
+            return "無効なタイムゾーンが指定されています";
         }
     }
 }
